@@ -7,17 +7,14 @@ using System.Threading.Tasks;
 
 namespace HashPass.Models
 {
-    public class AccountListItem
+    public class AccountCreate
     {
-        public int AccountId { get; set; }
 
-        public string  AcctName { get; set; }
+        [Required]
+        public string AcctName { get; set; }
 
+        [Required]
         public string AcctPassword { get; set; }
-
-
-        [Display(Name="Added")]
-        public DateTimeOffset AddedUtc { get; set; }
 
         public override string ToString() => AcctName;
        
