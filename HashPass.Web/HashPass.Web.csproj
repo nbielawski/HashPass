@@ -196,7 +196,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -274,6 +273,20 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HashPass.Data\HashPass.Data.csproj">
+      <Project>{b1deca5b-9908-4e33-b4f9-e2330fd068ea}</Project>
+      <Name>HashPass.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HashPass.Models\HashPass.Models.csproj">
+      <Project>{c75455a9-0d8c-408f-a4ea-03e3f20448f4}</Project>
+      <Name>HashPass.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HashPass.Services\HashPass.Services.csproj">
+      <Project>{e20b3234-6153-4a82-8ef2-83c592fac494}</Project>
+      <Name>HashPass.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

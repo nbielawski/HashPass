@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using HashPass.Web.Models;
+using HashPass.Data;
 
 namespace HashPass.Web
 {
