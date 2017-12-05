@@ -53,11 +53,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HashPass.Data\HashPass.Data.csproj">
+      <Project>{b1deca5b-9908-4e33-b4f9-e2330fd068ea}</Project>
+      <Name>HashPass.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HashPass.Models\HashPass.Models.csproj">
+      <Project>{c75455a9-0d8c-408f-a4ea-03e3f20448f4}</Project>
+      <Name>HashPass.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

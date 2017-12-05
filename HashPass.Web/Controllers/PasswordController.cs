@@ -1,4 +1,6 @@
 ﻿using HashPass.Models;
+using HashPass.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +15,23 @@ namespace HashPass.Web.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var model = new AccountListItem [0];
+            AccountService svc = NewMethod();
+            var model = svc.GetAccount();
+
             return View(model);
+        }
+
+        private AccountService NewMethod()
+        {
+            AccountService svc = CreateAccountService();
+            return svc;
+        }
+
+        private AccountService CreateAccountService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var svc = new AccountService(userId);
+            return svc;
         }
 
         public ActionResult Create()
@@ -26,10 +43,22 @@ namespace HashPass.Web.Controllers
         [ValidateAntiForgeryToken]
             public ActionResult Create(AccountCreate model)
         {
-            if (ModelState.IsValid)
-            {
+            if (!ModelState.IsValid) return View(model);
 
-            }
+
+
+
+            var svc = CreateAccountService();
+
+
+            if (svc.CreateAccount(model))
+            {
+                TempData["SaveResult"] = "Your Account and Password have been safely stored.";
+                return RedirectToAction("Index");
+            };
+
+
+            ModelState.AddModelError("", "Account/Password could not be saved.");
             return View(model);
         }
     }

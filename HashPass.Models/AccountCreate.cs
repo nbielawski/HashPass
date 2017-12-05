@@ -16,6 +16,8 @@ namespace HashPass.Models
         [Required]
         public string AcctPassword { get; set; }
 
+        
+
         public override string ToString() => AcctName;
        
 
