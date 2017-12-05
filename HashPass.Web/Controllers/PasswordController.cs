@@ -61,5 +61,13 @@ namespace HashPass.Web.Controllers
             ModelState.AddModelError("", "Account/Password could not be saved.");
             return View(model);
         }
+
+        public ActionResult Details(int id)
+        {
+            var svc = CreateAccountService();
+            var model = svc.GetAccountById(id);
+
+            return View(model);
+        }
     }
 }

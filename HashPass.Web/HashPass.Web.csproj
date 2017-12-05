@@ -260,6 +260,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Password\Index.cshtml" />
     <Content Include="Views\Password\Create.cshtml" />
+    <Content Include="Views\Password\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

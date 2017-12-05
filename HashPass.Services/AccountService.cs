@@ -59,6 +59,32 @@ namespace HashPass.Services
             }
         }
 
+        public AccountDetail GetAccountById(int AccountId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Accounts
+                        .Single(e => e.AccountId == AccountId && e.OwnerId == _userId);
+
+                return
+                    new AccountDetail
+                    {
+                        AccountId = entity.AccountId,
+                        AcctName = entity.AcctName,
+                        AcctPassword = entity.AcctPassword,
+                        AddedUtc = entity.AddedUtc,
+                        UpdatedUtc = entity.UpdatedUtc
+                    };
+
+
+            }
+        }
+
+
+
+
 
 
     }
