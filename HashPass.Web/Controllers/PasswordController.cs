@@ -69,5 +69,69 @@ namespace HashPass.Web.Controllers
 
             return View(model);
         }
+
+        public ActionResult Edit(int id)
+        {
+
+            var svc = CreateAccountService();
+            var detail = svc.GetAccountById(id);
+            var model =
+                new AccountEdit
+                {
+                    AccountId = detail.AccountId,
+                    AcctName = detail.AcctName,
+                    AcctPassword = detail.AcctPassword
+                };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, AccountEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.AccountId != id)
+            {
+                ModelState.AddModelError("", "ID does not match");
+                return View(model);
+            }
+
+            var svc = CreateAccountService();
+            if (svc.UpdateAccount(model))
+            {
+                TempData["SaveResult"] = "Your Account Has Been Updated";
+                    return RedirectToAction("Index");
+                    
+            }
+
+            ModelState.AddModelError("", "Your Account Could Not Be Updated");
+            
+            return View();
+        }
+
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var svc = CreateAccountService();
+            var model = svc.GetAccountById(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var svc = CreateAccountService();
+
+            svc.DeleteAccount(id);
+
+            TempData["SaveResult"] = "Account and Password were deleted.";
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

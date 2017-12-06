@@ -82,7 +82,37 @@ namespace HashPass.Services
             }
         }
 
+        public bool UpdateAccount(AccountEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Accounts
+                        .Single(e => e.AccountId == model.AccountId && e.OwnerId == _userId);
 
+                entity.AcctName = model.AcctName;
+                entity.AcctPassword = model.AcctPassword;
+                
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteAccount(int acctId)
+        {
+            using (var db = new ApplicationDbContext())
+            {
+                var entity =
+                    db
+                    .Accounts
+                    .Single(e => e.AccountId == acctId && e.OwnerId == _userId);
+
+                db.Accounts.Remove(entity);
+
+                return db.SaveChanges() == 1;
+            }
+        }
 
 
 

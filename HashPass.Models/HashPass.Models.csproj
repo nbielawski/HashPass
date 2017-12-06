@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="AccountCreate.cs" />
     <Compile Include="AccountDetail.cs" />
+    <Compile Include="AccountEdit.cs" />
     <Compile Include="AccountListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
