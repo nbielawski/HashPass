@@ -84,7 +84,7 @@ namespace HashPass.Web.Controllers
                 };
             return View(model);
         }
-
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, AccountEdit model)

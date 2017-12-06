@@ -13,6 +13,7 @@ namespace HashPass.Models
 
         public string  AcctName { get; set; }
 
+        
         public string AcctPassword { get; set; }
 
 

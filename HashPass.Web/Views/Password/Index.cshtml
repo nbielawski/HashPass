@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>HashPass</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -21,32 +21,24 @@
 }
 <table class="table">
     <tr>
+        
         <th>
-            @Html.DisplayNameFor(model => model.AccountId)
+            Account
         </th>
+       
         <th>
-            @Html.DisplayNameFor(model => model.AcctName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AcctPassword)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AddedUtc)
+            Date Added
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccountId)
-        </td>
+       
         <td>
             @Html.DisplayFor(modelItem => item.AcctName)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AcctPassword)
-        </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.AddedUtc)
         </td>

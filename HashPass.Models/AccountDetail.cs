@@ -13,13 +13,16 @@ namespace HashPass.Models
 
         public Guid OwnerId { get; set; }
 
+        [Display(Name = "Account")]
         public string AcctName { get; set; }
 
+        [Display(Name = "Password")]
         public string AcctPassword { get; set; }
 
         [Display(Name="Added")]
         public DateTimeOffset AddedUtc { get; set; }
 
+        [Display(Name = "Last Updated")]
         public DateTimeOffset? UpdatedUtc { get; set; }
 
         public override string ToString() => $"[{AccountId}] {AcctName}";
