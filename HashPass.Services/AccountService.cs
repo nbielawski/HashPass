@@ -1,4 +1,5 @@
-﻿using HashPass.Data;
+﻿using HashPass.Contracts;
+using HashPass.Data;
 using HashPass.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HashPass.Services
 {
-    public class AccountService
+    public class AccountService : IAccountService
     {
         private readonly Guid _userId;
 
@@ -93,6 +94,7 @@ namespace HashPass.Services
 
                 entity.AcctName = model.AcctName;
                 entity.AcctPassword = model.AcctPassword;
+                entity.UpdatedUtc = DateTimeOffset.Now;
                 
 
                 return ctx.SaveChanges() == 1;

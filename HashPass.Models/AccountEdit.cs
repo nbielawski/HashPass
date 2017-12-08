@@ -14,6 +14,9 @@ namespace HashPass.Models
 
         public string AcctPassword { get; set; }
 
+        
+        public DateTimeOffset? UpdatedUtc { get; set; }
+
 
     }
 }

@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashPass.Models", "HashPass
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashPass.Data", "HashPass.Data\HashPass.Data.csproj", "{B1DECA5B-9908-4E33-B4F9-E2330FD068EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashPass.Contracts", "HashPass.Contracts\HashPass.Contracts.csproj", "{1BCE3273-C05B-4E45-B525-738817DC5C64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashPass.WebApi", "HashPass.WebApi\HashPass.WebApi.csproj", "{440C089A-0FEC-4EC8-908A-E10C39CCF9D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{B1DECA5B-9908-4E33-B4F9-E2330FD068EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1DECA5B-9908-4E33-B4F9-E2330FD068EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1DECA5B-9908-4E33-B4F9-E2330FD068EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BCE3273-C05B-4E45-B525-738817DC5C64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BCE3273-C05B-4E45-B525-738817DC5C64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BCE3273-C05B-4E45-B525-738817DC5C64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BCE3273-C05B-4E45-B525-738817DC5C64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{440C089A-0FEC-4EC8-908A-E10C39CCF9D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{440C089A-0FEC-4EC8-908A-E10C39CCF9D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{440C089A-0FEC-4EC8-908A-E10C39CCF9D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{440C089A-0FEC-4EC8-908A-E10C39CCF9D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

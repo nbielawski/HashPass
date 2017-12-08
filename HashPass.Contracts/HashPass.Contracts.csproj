@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E20B3234-6153-4A82-8EF2-83C592FAC494}</ProjectGuid>
+    <ProjectGuid>{1BCE3273-C05B-4E45-B525-738817DC5C64}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HashPass.Services</RootNamespace>
-    <AssemblyName>HashPass.Services</AssemblyName>
+    <RootNamespace>HashPass.Contracts</RootNamespace>
+    <AssemblyName>HashPass.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,20 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,24 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountService.cs" />
+    <Compile Include="IAccountService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HashPass.Contracts\HashPass.Contracts.csproj">
-      <Project>{1bce3273-c05b-4e45-b525-738817dc5c64}</Project>
-      <Name>HashPass.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HashPass.Data\HashPass.Data.csproj">
-      <Project>{b1deca5b-9908-4e33-b4f9-e2330fd068ea}</Project>
-      <Name>HashPass.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HashPass.Models\HashPass.Models.csproj">
-      <Project>{c75455a9-0d8c-408f-a4ea-03e3f20448f4}</Project>
+      <Project>{C75455A9-0D8C-408F-A4EA-03E3F20448F4}</Project>
       <Name>HashPass.Models</Name>
     </ProjectReference>
   </ItemGroup>

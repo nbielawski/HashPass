@@ -9,10 +9,16 @@ using System.Web.Mvc;
 
 namespace HashPass.Web.Controllers
 {
+//#if !DEBUG
+//    [RequireHttps]
+//#endif
+    [Authorize]
     public class PasswordController : Controller
     {
+
+
         // GET: Password
-        [Authorize]
+
         public ActionResult Index()
         {
             AccountService svc = NewMethod();
@@ -41,7 +47,7 @@ namespace HashPass.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-            public ActionResult Create(AccountCreate model)
+        public ActionResult Create(AccountCreate model)
         {
             if (!ModelState.IsValid) return View(model);
 
@@ -84,7 +90,7 @@ namespace HashPass.Web.Controllers
                 };
             return View(model);
         }
-      
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, AccountEdit model)
@@ -101,12 +107,12 @@ namespace HashPass.Web.Controllers
             if (svc.UpdateAccount(model))
             {
                 TempData["SaveResult"] = "Your Account Has Been Updated";
-                    return RedirectToAction("Index");
-                    
+                return RedirectToAction("Index");
+
             }
 
             ModelState.AddModelError("", "Your Account Could Not Be Updated");
-            
+
             return View();
         }
 
