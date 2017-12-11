@@ -282,6 +282,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HashPass.Contracts\HashPass.Contracts.csproj">
+      <Project>{1BCE3273-C05B-4E45-B525-738817DC5C64}</Project>
+      <Name>HashPass.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HashPass.Data\HashPass.Data.csproj">
       <Project>{b1deca5b-9908-4e33-b4f9-e2330fd068ea}</Project>
       <Name>HashPass.Data</Name>

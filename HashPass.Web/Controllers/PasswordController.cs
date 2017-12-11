@@ -1,4 +1,5 @@
-﻿using HashPass.Models;
+﻿using HashPass.Contracts;
+using HashPass.Models;
 using HashPass.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -15,7 +16,18 @@ namespace HashPass.Web.Controllers
     [Authorize]
     public class PasswordController : Controller
     {
+        private readonly Lazy<IAccountService> _acctService;
 
+        public PasswordController()
+        {
+            _acctService = new Lazy<IAccountService>(() =>
+           new AccountService(Guid.Parse(User.Identity.GetUserId())));
+        }
+
+        public PasswordController(Lazy<IAccountService> acctService)
+        {
+            _acctService = acctService;
+        }
 
         // GET: Password
 
