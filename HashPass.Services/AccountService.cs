@@ -118,6 +118,25 @@ namespace HashPass.Services
 
 
 
+        public bool VerifyPin(int pinNum)
+        {
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var query = from u in db.Users
+                            where u.PinNum == pinNum
+                            select u;
+
+                foreach (var u in query)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+
+
 
     }
 }

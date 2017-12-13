@@ -34,7 +34,10 @@ namespace HashPass.Web.Controllers
         public ActionResult Index()
         {
             AccountService svc = NewMethod();
+             
             var model = svc.GetAccount();
+            
+            
 
             return View(model);
         }
@@ -150,6 +153,8 @@ namespace HashPass.Web.Controllers
 
             return RedirectToAction("Index");
         }
+
+    
 
     }
 }
