@@ -4,15 +4,16 @@ using HashPass.Services;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace HashPass.Web.Controllers
 {
-//#if !DEBUG
-//    [RequireHttps]
-//#endif
+    //#if !DEBUG
+    //    [RequireHttps]
+    //#endif
     [Authorize]
     public class PasswordController : Controller
     {
@@ -33,8 +34,8 @@ namespace HashPass.Web.Controllers
 
         public ActionResult Index()
         {
+            
             AccountService svc = NewMethod();
-             
             var model = svc.GetAccount();
             
             
@@ -154,7 +155,9 @@ namespace HashPass.Web.Controllers
             return RedirectToAction("Index");
         }
 
-    
+
+
+
 
     }
 }
