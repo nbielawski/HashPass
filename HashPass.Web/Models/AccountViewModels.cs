@@ -60,6 +60,11 @@ namespace HashPass.Web.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        [Required]
+        [Display(Name = "Pin Number")]
+        [DataType(DataType.Password)]
+        public int PinNum { get; set; }
     }
 
     public class RegisterViewModel

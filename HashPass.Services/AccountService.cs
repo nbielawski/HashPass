@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace HashPass.Services
 {
     public class AccountService : IAccountService
     {
         private readonly Guid _userId;
 
+        
         public AccountService(Guid userId)
         {
             _userId = userId;
@@ -20,12 +23,14 @@ namespace HashPass.Services
 
         public bool CreateAccount(AccountCreate model)
         {
+
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.AcctPassword);
             var entity =
                  new Account()
                  {
                      OwnerId = _userId,
                      AcctName = model.AcctName,
-                     AcctPassword = model.AcctPassword,
+                     AcctPassword = hashedPassword,
                      AddedUtc = DateTimeOffset.Now
                  };
             
@@ -62,12 +67,16 @@ namespace HashPass.Services
 
         public AccountDetail GetAccountById(int AccountId)
         {
+            
+            
             using (var ctx = new ApplicationDbContext())
             {
+            
                 var entity =
                     ctx
                         .Accounts
                         .Single(e => e.AccountId == AccountId && e.OwnerId == _userId);
+
 
                 return
                     new AccountDetail

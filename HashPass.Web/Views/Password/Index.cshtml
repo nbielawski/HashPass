@@ -26,9 +26,7 @@
             Account
         </th>
 
-        <th>
-            Date Added
-        </th>
+        
         <th></th>
     </tr>
 
@@ -40,15 +38,13 @@
                 @Html.DisplayFor(modelItem => item.AcctName)
             </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.AddedUtc)
-            </td>
+           
             <td>
                 <!-- Trigger the modal with a button -->
                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal_@item.AccountId" >Show Password</button>
                 @Html.ActionLink("Edit", "Edit", new { id = item.AccountId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.AccountId })|
-                @Html.ActionLink("Delete", "Delete", new { id = item.AccountId })
+                 @Html.ActionLink("Delete", "Delete", new { id = item.AccountId } )
             </td>
         </tr>
     }
