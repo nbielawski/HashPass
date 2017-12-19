@@ -4,36 +4,49 @@ using HashPass.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+
+
 
 
 
 namespace HashPass.Services
 {
-    public class AccountService : IAccountService
+    public class AccountService : IAccountService 
     {
         private readonly Guid _userId;
 
-        
+
         public AccountService(Guid userId)
         {
             _userId = userId;
         }
 
+
+
+
         public bool CreateAccount(AccountCreate model)
         {
 
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.AcctPassword);
+            string key = "sKzvYk#1Pn33!YN";
+            string userInput = model.AcctPassword;
+
+            string ciphertext = Rijndael256.Rijndael.Encrypt(userInput, key, Rijndael256.KeySize.Aes256);
+
+           // string hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.AcctPassword);
+
             var entity =
                  new Account()
                  {
                      OwnerId = _userId,
                      AcctName = model.AcctName,
-                     AcctPassword = hashedPassword,
+                     AcctPassword = ciphertext,
                      AddedUtc = DateTimeOffset.Now
                  };
-            
+
             using (var ctx = new ApplicationDbContext())
             {
                 ctx.Accounts.Add(entity);
@@ -41,37 +54,52 @@ namespace HashPass.Services
             }
         }
 
+
+
         public IEnumerable<AccountListItem> GetAccount()
-        {
-            using(var ctx = new ApplicationDbContext())
+        {           
+
+
+            using (var ctx = new ApplicationDbContext())
             {
+                string key = "sKzvYk#1Pn33!YN";
+
                 var query =
                     ctx
                         .Accounts
                         .Where(e => e.OwnerId == _userId)
                         .Select(
                             e =>
+
                                 new AccountListItem
                                 {
+                                    
                                     AccountId = e.AccountId,
                                     AcctName = e.AcctName,
                                     AcctPassword = e.AcctPassword,
                                     AddedUtc = e.AddedUtc
-                                }
-                               );
+
+                                }                           
+                                                               
+                              
+                               );                
+                
 
                 return query.ToArray();
-                
+
             }
-        }
+
+        }     
+
+
 
         public AccountDetail GetAccountById(int AccountId)
         {
-            
-            
+            string key = "sKzvYk#1Pn33!YN";
+
             using (var ctx = new ApplicationDbContext())
             {
-            
+
                 var entity =
                     ctx
                         .Accounts
@@ -83,17 +111,21 @@ namespace HashPass.Services
                     {
                         AccountId = entity.AccountId,
                         AcctName = entity.AcctName,
-                        AcctPassword = entity.AcctPassword,
+                        AcctPassword = Rijndael256.Rijndael.Decrypt(entity.AcctPassword, key, Rijndael256.KeySize.Aes256),
                         AddedUtc = entity.AddedUtc,
                         UpdatedUtc = entity.UpdatedUtc
                     };
-
 
             }
         }
 
         public bool UpdateAccount(AccountEdit model)
         {
+            string key = "sKzvYk#1Pn33!YN";
+            string userInput = model.AcctPassword;
+            string ciphertext = Rijndael256.Rijndael.Encrypt(userInput, key, Rijndael256.KeySize.Aes256);
+
+
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
@@ -102,9 +134,9 @@ namespace HashPass.Services
                         .Single(e => e.AccountId == model.AccountId && e.OwnerId == _userId);
 
                 entity.AcctName = model.AcctName;
-                entity.AcctPassword = model.AcctPassword;
+                entity.AcctPassword = ciphertext;
                 entity.UpdatedUtc = DateTimeOffset.Now;
-                
+
 
                 return ctx.SaveChanges() == 1;
             }
@@ -127,22 +159,6 @@ namespace HashPass.Services
 
 
 
-        public bool VerifyPin(int pinNum)
-        {
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                var query = from u in db.Users
-                            where u.PinNum == pinNum
-                            select u;
-
-                foreach (var u in query)
-                {
-                    return true;
-                }
-
-                return false;
-            }
-        }
 
 
 
