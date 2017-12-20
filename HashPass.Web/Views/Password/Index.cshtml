@@ -4,10 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>HashPass</h2>
 
+<div class="jumbotron">
+    <h1>HashPass</h1>
+</div>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Account", "Create" )
 </p>
 
 @if (TempData.ContainsKey("SaveResult"))
@@ -21,33 +23,66 @@
 }
 <table class="table">
     <tr>
-        
+
         <th>
             Account
         </th>
-       
-        <th>
-            Date Added
-        </th>
+
+        
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.AcctName)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.AddedUtc)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.AccountId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.AccountId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.AccountId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.AcctName)
+            </td>
+
+           
+            <td>
+                <!-- Trigger the modal with a button -->
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal_@item.AccountId" >View Encrypted Password</button>
+                @Html.ActionLink("Details", "Details", new { id = item.AccountId }, new { @class = "btnDetails" }) 
+                @Html.ActionLink("Edit", "Edit", new { id = item.AccountId }, new { @class = "btnEdit" }) 
+                 @Html.ActionLink("Delete", "Delete", new { id = item.AccountId }, new { @class = "btnDelete" })
+            </td>
+        </tr>
+    }
 
 </table>
+@foreach (var item in Model)
+{
+<!--Begin Modal-->
+<div class="container">
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal_@item.AccountId" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Your Password has been encrypted and stored as:</h4>
+                </div>
+
+
+                <div class="modal-body">
+                   
+                   <p>@Html.DisplayFor(modelItem => item.AcctPassword)</p>
+                  
+                   
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!--End Modal-->
+}

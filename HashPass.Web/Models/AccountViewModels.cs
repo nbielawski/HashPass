@@ -60,6 +60,11 @@ namespace HashPass.Web.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        [Required]
+        [Display(Name = "Pin Number")]
+        [DataType(DataType.Password)]
+        public int PinNum { get; set; }
     }
 
     public class RegisterViewModel
@@ -79,6 +84,11 @@ namespace HashPass.Web.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Pin Number")]        
+        [DataType(DataType.Password)]
+        public int PinNum { get; set; }
     }
 
     public class ResetPasswordViewModel
