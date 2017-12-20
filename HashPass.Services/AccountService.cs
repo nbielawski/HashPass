@@ -15,7 +15,7 @@ using System.IO;
 
 namespace HashPass.Services
 {
-    public class AccountService : IAccountService 
+    public class AccountService : IAccountService
     {
         private readonly Guid _userId;
 
@@ -36,7 +36,7 @@ namespace HashPass.Services
 
             string ciphertext = Rijndael256.Rijndael.Encrypt(userInput, key, Rijndael256.KeySize.Aes256);
 
-           // string hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.AcctPassword);
+            // string hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.AcctPassword);
 
             var entity =
                  new Account()
@@ -57,12 +57,10 @@ namespace HashPass.Services
 
 
         public IEnumerable<AccountListItem> GetAccount()
-        {           
-
+        {
 
             using (var ctx = new ApplicationDbContext())
             {
-                string key = "sKzvYk#1Pn33!YN";
 
                 var query =
                     ctx
@@ -73,23 +71,21 @@ namespace HashPass.Services
 
                                 new AccountListItem
                                 {
-                                    
+
                                     AccountId = e.AccountId,
                                     AcctName = e.AcctName,
                                     AcctPassword = e.AcctPassword,
                                     AddedUtc = e.AddedUtc
+                                }
+                                
+                                );
 
-                                }                           
-                                                               
-                              
-                               );                
-                
 
                 return query.ToArray();
 
             }
 
-        }     
+        }
 
 
 
