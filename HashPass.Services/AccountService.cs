@@ -25,18 +25,12 @@ namespace HashPass.Services
             _userId = userId;
         }
 
-
-
-
         public bool CreateAccount(AccountCreate model)
         {
-
             string key = "sKzvYk#1Pn33!YN";
             string userInput = model.AcctPassword;
 
             string ciphertext = Rijndael256.Rijndael.Encrypt(userInput, key, Rijndael256.KeySize.Aes256);
-
-            // string hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.AcctPassword);
 
             var entity =
                  new Account()
@@ -58,33 +52,25 @@ namespace HashPass.Services
 
         public IEnumerable<AccountListItem> GetAccount()
         {
-
             using (var ctx = new ApplicationDbContext())
             {
-
                 var query =
                     ctx
-                        .Accounts
-                        .Where(e => e.OwnerId == _userId)
-                        .Select(
-                            e =>
+                     .Accounts
+                     .Where(e => e.OwnerId == _userId)
+                     .Select(
+                         e =>
+                             new AccountListItem
+                             {
 
-                                new AccountListItem
-                                {
-
-                                    AccountId = e.AccountId,
-                                    AcctName = e.AcctName,
-                                    AcctPassword = e.AcctPassword,
-                                    AddedUtc = e.AddedUtc
-                                }
-                                
-                                );
-
-
+                                 AccountId = e.AccountId,
+                                 AcctName = e.AcctName,
+                                 AcctPassword = e.AcctPassword,
+                                 AddedUtc = e.AddedUtc
+                             }
+                             );
                 return query.ToArray();
-
             }
-
         }
 
 
@@ -95,12 +81,10 @@ namespace HashPass.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-
                 var entity =
                     ctx
                         .Accounts
                         .Single(e => e.AccountId == AccountId && e.OwnerId == _userId);
-
 
                 return
                     new AccountDetail
@@ -111,7 +95,6 @@ namespace HashPass.Services
                         AddedUtc = entity.AddedUtc,
                         UpdatedUtc = entity.UpdatedUtc
                     };
-
             }
         }
 
@@ -120,7 +103,6 @@ namespace HashPass.Services
             string key = "sKzvYk#1Pn33!YN";
             string userInput = model.AcctPassword;
             string ciphertext = Rijndael256.Rijndael.Encrypt(userInput, key, Rijndael256.KeySize.Aes256);
-
 
             using (var ctx = new ApplicationDbContext())
             {
@@ -132,7 +114,6 @@ namespace HashPass.Services
                 entity.AcctName = model.AcctName;
                 entity.AcctPassword = ciphertext;
                 entity.UpdatedUtc = DateTimeOffset.Now;
-
 
                 return ctx.SaveChanges() == 1;
             }
@@ -152,12 +133,6 @@ namespace HashPass.Services
                 return db.SaveChanges() == 1;
             }
         }
-
-
-
-
-
-
 
     }
 }
