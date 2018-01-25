@@ -55,28 +55,11 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\201712051503391_InitialCreate.cs" />
-    <Compile Include="Migrations\201712051503391_InitialCreate.Designer.cs">
-      <DependentUpon>201712051503391_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712121633086_AddedPin.cs" />
-    <Compile Include="Migrations\201712121633086_AddedPin.Designer.cs">
-      <DependentUpon>201712121633086_AddedPin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712051503391_InitialCreate.resx">
-      <DependentUpon>201712051503391_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712121633086_AddedPin.resx">
-      <DependentUpon>201712121633086_AddedPin.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
